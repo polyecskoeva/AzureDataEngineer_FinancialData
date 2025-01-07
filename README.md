@@ -13,9 +13,13 @@ storing it in Azure Data Lake Gen2, and orchestrating workflows with Azure Data 
    - Azure Synapse Analytics
      
 
-
-
-
-
 ## Dataset
+The dataset includes stock prices, dividend data, and fundamental company information fetched from Yahoo Finance. Total Shareholder Return (TSR) and volatility metrics were calculated to provide deeper insights into the performance of S&P 500 companies.
 [Here is the dataset.](https://github.com/polyecskoeva/AzureDataEngineer_FinancialData/tree/main/Data_Raw)
+
+** Data model
+
+
+** Data Extract
+Here is the Python script fetching the data using yfinance package: [Extract data](Data%20Extract/FETCHING%20YFINANCE%20DATA.py)
+
