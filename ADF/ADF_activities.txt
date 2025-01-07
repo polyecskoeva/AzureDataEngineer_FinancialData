@@ -1,0 +1,61 @@
+
+
+{
+    "name": "DBNotebookdatafetchPipeline",
+    "properties": {
+        "activities": [
+            {
+                "name": "YfinanceDatadownload",
+                "description": "it downloads and saves 3 parquet files into Datalakse",
+                "type": "DatabricksNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/polyecskoeva@gmail.com/COMPDATAFETCH/FETCHING YFINANCE DATA"
+                },
+                "linkedServiceName": {
+                    "referenceName": "YfinanceDataFetchRaw",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "FromDbricktoSilver",
+                "description": "After tansformation, new data creation, Databricks save the data to silver container",
+                "type": "DatabricksNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "YfinanceDatadownload",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/polyecskoeva@gmail.com/BronzeDataTransformation/Bronze data transformation"
+                },
+                "linkedServiceName": {
+                    "referenceName": "FromDbricktoSilver",
+                    "type": "LinkedServiceReference"
+                }
+            }
+        ],
+        "annotations": [],
+        "lastPublishTime": "2025-01-05T15:16:00Z"
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}

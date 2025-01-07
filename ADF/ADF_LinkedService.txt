@@ -1,0 +1,30 @@
+{
+    "name": "YfinanceDataFetchRaw",
+    "type": "Microsoft.DataFactory/factories/linkedservices",
+    "properties": {
+        "annotations": [],
+        "type": "AzureDatabricks",
+        "typeProperties": {
+            "domain": "https://adb-3651088187647465.5.azuredatabricks.net",
+            "existingClusterId": "0104-154133-9tnwwr0d",
+            "encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFERi1DT01QU1RPQ0tQUk9KRUNUX2Y3MWQ1M2IxLThhNzQtNDM1YS1hNDc0LTM2NmEyMzU3ZDJhYyINCn0="
+        }
+    }
+}
+
+
+
+
+{
+    "name": "FromDbricktoSilver",
+    "type": "Microsoft.DataFactory/factories/linkedservices",
+    "properties": {
+        "annotations": [],
+        "type": "AzureDatabricks",
+        "typeProperties": {
+            "domain": "https://adb-3651088187647465.5.azuredatabricks.net",
+            "existingClusterId": "0104-154133-9tnwwr0d",
+            "encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFERi1DT01QU1RPQ0tQUk9KRUNUX2QyMmQ2NGQwLWQ0ODItNGQ2Ni1hZTMwLWU5NmQ0OTY4YTYzYiINCn0="
+        }
+    }
+}
