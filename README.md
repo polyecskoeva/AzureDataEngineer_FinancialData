@@ -20,15 +20,19 @@ The dataset includes stock prices, dividend data, and fundamental company inform
 ## Data model
 Here is the data model: [Data model](Data%20model.pdf)
 
-## Data Extract
+## ETL
+### Data Extract
 Here is the Python script fetching the data using yfinance package in Databricks: [Extract data](Data%20Extract/FETCHING%20YFINANCE%20DATA.py)
 
-## Data Transformation
+### Data Transformation
 Here is the Python script transforming the data using Databricks: [Transform data](Data%20Transformation/Bronze%20data%20transformation.py)
 
-## Data Load 
-Using Synapse, I created tables that were loaded into the gold container of Data Lake Gen2. I also created a connection with Power Bi using SQL serverless endpoints
+### Data Load 
+Using Synapse, I created tables that were loaded into the gold container of Data Lake Gen2.
 [Load Data](Data%20Load)
+
+### Pipeline
+[ADF Pipeline](ADF)
 
 
 
