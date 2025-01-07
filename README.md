@@ -20,7 +20,9 @@ The dataset includes stock prices, dividend data, and fundamental company inform
 ** Data model
 Here is the data model: [Data model](Data%20model.pdf)
 
-
 ** Data Extract
-Here is the Python script fetching the data using yfinance package: [Extract data](Data%20Extract/FETCHING%20YFINANCE%20DATA.py)
+Here is the Python script fetching the data using yfinance package in Databricks: [Extract data](Data%20Extract/FETCHING%20YFINANCE%20DATA.py)
+
+Data Transformation
+Here is the Python script transforming the data using in Databricks: [Extract data](Data%20Transformation/Bronze%20YData%20transformation.py)
 
