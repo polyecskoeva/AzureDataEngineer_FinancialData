@@ -1,0 +1,61 @@
+---- Weekly Trend-----
+SELECT 
+    DATEPART(WEEK, Date) AS Week_Number,
+    AVG([Close]) AS Avg_Close,
+    AVG(Volume) AS Avg_Volume
+FROM gold.stock_data_transf
+GROUP BY DATEPART(WEEK, Date)
+ORDER BY Week_Number;
+
+--------- TSR ---------
+--- Top 5 companies with the largest TSR
+SELECT TOP 5
+    ticker,
+    year,
+    TSR
+FROM gold.TSR_annual
+ORDER BY TSR DESC;
+---- Top 5 worst TSR
+SELECT TOP 5
+    ticker,
+    year,
+    TSR
+FROM gold.TSR_annual
+ORDER BY TSR ASC;
+
+---TOP 5 companies with the best yearly TSR change --------
+WITH TSR_Changes AS (
+    SELECT 
+        ticker,
+        year,
+        TSR,
+        LAG(TSR) OVER (PARTITION BY ticker ORDER BY year) AS Previous_TSR
+    FROM gold.TSR_annual
+)
+SELECT TOP 5
+    ticker,
+    year,
+    TSR,
+    Previous_TSR,
+    (TSR - Previous_TSR) AS TSR_Change
+FROM TSR_Changes
+WHERE Previous_TSR IS NOT NULL
+ORDER BY TSR_Change DESC;
+
+------- Average Dividend Payment and Sector Contribution to Total Dividends------
+SELECT 
+    s.Sector,
+    AVG(d.Dividend_Amount) AS Average_Dividend_Payment,
+    ROUND((SUM(d.Dividend_Amount) * 100.0) / (SELECT SUM(Dividend_Amount) FROM gold.dividend_data), 2) AS Dividend_Percentage_Of_Total
+FROM 
+    gold.dividend_data d
+LEFT JOIN 
+    gold.company_data co ON co.Symbol = d.Symbol
+LEFT JOIN
+    gold.sector_data s ON s.Sector_ID = co.Sector_ID
+GROUP BY 
+    s.Sector
+ORDER BY 
+    Average_Dividend_Payment DESC;
+
+
