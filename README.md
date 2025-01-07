@@ -36,6 +36,7 @@ Using Synapse, I created tables that were loaded into the gold container of Data
 
 ## Detialed guide and Analytics in synapse
 [Analytics](Analytics_synapse/SQL_for_analytics.txt)
+
 [Detailed Steps](Detailed%20Steps.pdf)
 
 
