@@ -1,0 +1,112 @@
+-----------CREATE VIEWS STOCK_DATA----------
+CREATE VIEW gold.stock_data
+AS
+SELECT 
+    *
+FROM 
+    OPENROWSET(BULK 'https://compstockdatalake.blob.core.windows.net/silver/Facts/stock_data_fact.parquet/',
+               FORMAT='PARQUET'
+ 
+) as query1
+
+-----------CREATE VIEWS TSR----------
+
+CREATE VIEW gold.TSR
+AS
+SELECT 
+    *
+FROM 
+    OPENROWSET(BULK 'https://compstockdatalake.blob.core.windows.net/silver/Facts/annual_tsr_fact.parquet/',
+               FORMAT='PARQUET'
+ 
+) as query1
+
+
+-----------CREATE VIEWS Volatility----------
+
+CREATE VIEW gold.volatility
+AS
+SELECT 
+    *
+FROM 
+    OPENROWSET(BULK 'https://compstockdatalake.blob.core.windows.net/silver/Facts/annual_volatility_fact.parquet/',
+               FORMAT='PARQUET'
+ 
+) as query1
+
+
+-----------CREATE VIEWS dividend----------
+
+CREATE VIEW gold.dividend
+AS
+SELECT 
+    *
+FROM 
+    OPENROWSET(BULK 'https://compstockdatalake.blob.core.windows.net/silver/Facts/dividend_data_fact.parquet/',
+               FORMAT='PARQUET'
+ 
+) as query1
+
+
+-----------CREATE VIEWS company----------
+
+CREATE VIEW gold.company
+AS
+SELECT 
+    *
+FROM 
+    OPENROWSET(BULK 'https://compstockdatalake.blob.core.windows.net/silver/Dimensions/basic_company_data_transformed_dimension.parquet/',
+               FORMAT='PARQUET'
+ 
+) as query1
+
+-----------CREATE VIEWS Calendar----------
+
+CREATE VIEW gold.calendar
+AS
+SELECT 
+    *
+FROM 
+    OPENROWSET(BULK 'https://compstockdatalake.blob.core.windows.net/silver/Dimensions/calendar_dimension.parquet/',
+               FORMAT='PARQUET'
+ 
+) as query1
+
+
+
+-----------CREATE VIEWS Sector----------
+
+CREATE VIEW gold.sector
+AS
+SELECT 
+    *
+FROM 
+    OPENROWSET(BULK 'https://compstockdatalake.blob.core.windows.net/silver/Dimensions/Sector_dimension.parquet/',
+               FORMAT='PARQUET'
+ 
+) as query1
+
+-----------CREATE VIEWS Sector_subsector_comb----------
+
+CREATE VIEW gold.sector_subsector_comb
+AS
+SELECT 
+    *
+FROM 
+    OPENROWSET(BULK 'https://compstockdatalake.blob.core.windows.net/silver/Dimensions/Sector_Sub_Sector_ID_Combination_dimension.parquet/',
+               FORMAT='PARQUET'
+ 
+) as query1
+
+
+-----------CREATE VIEWS Sub_Sector----------
+
+CREATE VIEW gold.Sub_Sector
+AS
+SELECT 
+    *
+FROM 
+    OPENROWSET(BULK 'https://compstockdatalake.blob.core.windows.net/silver/Dimensions/Sub_Sector_dimension.parquet/',
+               FORMAT='PARQUET'
+ 
+) as query1

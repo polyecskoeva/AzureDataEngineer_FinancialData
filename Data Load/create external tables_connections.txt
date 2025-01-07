@@ -1,0 +1,154 @@
+CREATE DATABASE SCOPED CREDENTIAL credential_compstock
+WITH IDENTITY = 'Managed Identity'    --- I have assigned MI to the Synapse Analytics workspace to authenticate with  Azure Data Lake.
+
+
+CREATE EXTERNAL DATA SOURCE source_silver
+WITH (
+LOCATION='https://compstockdatalake.blob.core.windows.net/silver',
+CREDENTIAL = credential_compstock
+
+)
+
+CREATE EXTERNAL DATA SOURCE source_gold
+WITH (
+LOCATION='https://compstockdatalake.blob.core.windows.net/gold',
+CREDENTIAL = credential_compstock
+
+)
+
+CREATE EXTERNAL FILE FORMAT format_parquet
+WITH (
+    FORMAT_TYPE=PARQUET,
+    DATA_COMPRESSION='org.apache.hadoop.io.compress.SnappyCodec'
+
+)
+
+
+---------------   CREATE EXTERNAL TABLES, SAVE TO GOLD CONTAINER-------------
+-----------------------------------------------------------------------------
+--------------CREATE STOCK DATA EXTERNAL TABLE-------------------------------
+CREATE EXTERNAL TABLE gold.stockdata
+WITH (
+    LOCATION= 'stockdata',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.stock_data
+
+--------------CREATE TSR EXTERNAL TABLE-------------------------------
+
+CREATE EXTERNAL TABLE gold.TSR_annual
+WITH (
+    LOCATION= 'TSR_annual',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.TSR
+
+--------------CREATE volatility_annual EXTERNAL TABLE-------------------------------
+
+CREATE EXTERNAL TABLE gold.volatility_annual
+WITH (
+    LOCATION= 'volatility_annual',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.volatility
+
+
+--------------CREATE DIVIDEND EXTERNAL TABLE-------------------------------
+
+CREATE EXTERNAL TABLE gold.dividend_data
+WITH (
+    LOCATION= 'dividend',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.dividend
+
+
+--------------CREATE DIVIDEND EXTERNAL TABLE-------------------------------
+
+CREATE EXTERNAL TABLE gold.dividend_data
+WITH (
+    LOCATION= 'dividend',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.dividend
+
+
+--------------CREATE company EXTERNAL TABLE-------------------------------
+
+CREATE EXTERNAL TABLE gold.company_data
+WITH (
+    LOCATION= 'company_data',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.company
+
+
+--------------CREATE calendar EXTERNAL TABLE-------------------------------
+
+CREATE EXTERNAL TABLE gold.calendar_data
+WITH (
+    LOCATION= 'calendar',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.calendar
+
+--------------CREATE sector EXTERNAL TABLE-------------------------------
+
+CREATE EXTERNAL TABLE gold.sector_data
+WITH (
+    LOCATION= 'sector',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.sector
+
+--------------CREATE sector_subsector_comb EXTERNAL TABLE-------------------------------
+
+CREATE EXTERNAL TABLE gold.sector_subsector_comb_data
+WITH (
+    LOCATION= 'sector_subsector_comb',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.sector_subsector_comb
+
+
+--------------CREATE Sub_Sector_data  EXTERNAL TABLE-------------------------------
+
+CREATE EXTERNAL TABLE gold.Sub_Sector_data
+WITH (
+    LOCATION= 'Sub_Sector',
+    DATA_SOURCE=source_gold,
+    FILE_FORMAT = format_parquet
+
+)
+AS
+select * from gold.Sub_Sector
+
+
+
