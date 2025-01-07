@@ -27,15 +27,18 @@ WITH (
 ---------------   CREATE EXTERNAL TABLES, SAVE TO GOLD CONTAINER-------------
 -----------------------------------------------------------------------------
 --------------CREATE STOCK DATA EXTERNAL TABLE-------------------------------
-CREATE EXTERNAL TABLE gold.stockdata
+CREATE EXTERNAL TABLE gold.stock_data_transf
 WITH (
-    LOCATION= 'stockdata',
+    LOCATION= 'stockdata_trans',
     DATA_SOURCE=source_gold,
     FILE_FORMAT = format_parquet
 
 )
 AS
-select * from gold.stock_data
+SELECT *,
+       ([Volume] * [Close]) AS Daily_Transaction,
+       [Close] / [Open] AS Daily_stockprice_change
+from gold.stock_data
 
 --------------CREATE TSR EXTERNAL TABLE-------------------------------
 
