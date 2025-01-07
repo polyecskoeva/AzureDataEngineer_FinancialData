@@ -3,7 +3,7 @@ A Finance Data Engineering project leveraging Azure Cloud involves downloading S
 storing it in Azure Data Lake Gen2, and orchestrating workflows with Azure Data Factory. The data is processed and analyzed in Azure Synapse Analytics for insights.
 
 ## Architecture
-![Project Architecture](AzureDataEngineer_FinancialData/Data%20Architecture.jpeg)
+![Project Architecture](Data%20Architecture.jpeg)
 1. Programming Language - Python
 2. Scripting Language - SQL
 3. Microsoft Azure
@@ -18,6 +18,7 @@ The dataset includes stock prices, dividend data, and fundamental company inform
 [Here is the dataset.](https://github.com/polyecskoeva/AzureDataEngineer_FinancialData/tree/main/Data_Raw)
 
 ** Data model
+Here is the data model: [Data model](Data%20model.pdf)
 
 
 ** Data Extract
