@@ -24,7 +24,7 @@ Here is the data model: [Data model](Data%20model.pdf)
 Here is the Python script fetching the data using yfinance package in Databricks: [Extract data](Data%20Extract/FETCHING%20YFINANCE%20DATA.py)
 
 Data Transformation
-Here is the Python script transforming the data using Databricks: [Transform data](BreadcrumbsAzureDataEngineer_FinancialData/Data%20Transformation/Bronze%20data%20transformation.py)
+Here is the Python script transforming the data using Databricks: [Transform data](AzureDataEngineer_FinancialData/Data%20Transformation/Bronze%20data%20transformation.py)
 
 
 
